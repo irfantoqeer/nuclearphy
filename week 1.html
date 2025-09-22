@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuclear Physics - Week 1</title>
+    <style>
+        :root {
+            --primary-color: #0d47a1;
+            --secondary-color: #1565c0;
+            --accent-color: #29b6f6;
+            --text-color: #263238;
+            --light-bg: #f5f7fa;
+            --border-color: #b0bec5;
+            --highlight-color: #4fc3f7;
+            --sidebar-bg: #e3f2fd;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+        
+        .sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar a:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .content {
+            flex: 1;
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .instructor {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+        
+        .week-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            margin: 0 -30px 30px;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        h2 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        
+        .lecture {
+            margin-bottom: 50px;
+        }
+        
+        .lecture-header {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        
+        .page {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .page:last-child {
+            border-bottom: none;
+        }
+        
+        h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.3em;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .key-concept {
+            background-color: rgba(41, 182, 246, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .key-concept strong {
+            color: var(--primary-color);
+        }
+        
+        .figure {
+            text-align: center;
+            margin: 25px 0;
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .figure img {
+            max-width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .figure-caption {
+            font-style: italic;
+            color: #546e7a;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .highlight {
+            background-color: var(--highlight-color);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        ul {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .assignment {
+            background-color: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .assignment h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #546e7a;
+            font-size: 0.9em;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .page-number {
+            text-align: right;
+            color: #78909c;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nuclear Physics</h1>
+            <div class="instructor">Instructor: Dr. Irfan Toqeer</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h3>Week 1 Contents</h3>
+            <ul>
+                <li><a href="#lecture1">Lecture 1: Course Introduction and Early History</a></li>
+                <li><a href="#lecture2">Lecture 2: Nuclear Discovery and Structure</a></li>
+                <li><a href="#lecture3">Lecture 3: Nuclear Terminology and Notation</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <div class="week-header">
+                <h2>Week 1: Introduction to Nuclear Physics</h2>
+            </div>
+            
+            <div id="lecture1" class="lecture">
+                <div class="lecture-header">
+                    <h3>Lecture 1: Course Introduction and Early History</h3>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 1: Course Overview and Syllabus</h4>
+                    <p>Welcome to Nuclear Physics! This 16-week course will explore the fundamental properties of atomic nuclei, nuclear reactions, and their applications in science and technology. Throughout this semester, we will journey from the historical discoveries that founded nuclear physics to modern applications in medicine, energy, and research.</p>
+                    
+                    <p>Our course is structured to provide a comprehensive understanding of nuclear physics concepts, starting with basic nuclear properties and progressing to more complex topics like nuclear models, radioactivity, nuclear reactions, and applications. The curriculum is designed for middle-level undergraduate students with a background in introductory physics and mathematics.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Course Objectives:</strong> By the end of this course, you will be able to explain nuclear structure, understand radioactive decay processes, analyze nuclear reactions, and appreciate the applications of nuclear physics in various fields.
+                    </div>
+                    
+                    <p>The syllabus outlines our weekly topics, assessment schedule, and expectations. We will have three lectures per week, each lasting 50 minutes, along with weekly assignments and periodic quizzes to reinforce your understanding. The course includes two midterm exams and a final exam, as detailed in the assessment schedule.</p>
+                    
+                    <div class="figure">
+                        <img src="fig1.png" alt="Course Structure Overview">
+                        <div class="figure-caption">
+                            <strong>Figure 1.1:</strong> Overview of the 16-week Nuclear Physics course structure, showing the progression of topics from basic concepts to advanced applications.
+                        </div>
+                    </div>
+                    
+                    <div class="page-number">Page 1 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 2: Discovery of Radioactivity (Becquerel)</h4>
+                    <p>The story of nuclear physics begins in 1896 with a serendipitous discovery by French physicist <span class="highlight">Henri Becquerel</span>. While investigating phosphorescence in uranium salts, Becquerel made an observation that would revolutionize our understanding of matter.</p>
+                    
+                    <p>Becquerel's experiment involved wrapping photographic plates in black paper to protect them from light and placing uranium salts on top. He expected that the salts would only emit radiation after being exposed to sunlight and that this radiation would penetrate the paper and expose the plates. However, when cloudy weather prevented exposure to sunlight, he developed the plates anyway and discovered they were already exposed.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Key Discovery:</strong> Becquerel demonstrated that uranium salts emit radiation spontaneously without any external energy source, a phenomenon he called "radioactivity."
+                    </div>
+                    
+                    <p>This discovery was groundbreaking because it revealed a previously unknown property of matter - the ability of certain elements to emit radiation continuously without any apparent energy input. Becquerel's work challenged the prevailing understanding of atomic structure and opened a new field of physics.</p>
+                    
+                    <div class="figure">
+                        <img src="fig2.png">
+                        <div class="figure-caption">
+                            <strong>Figure 1.2:</strong> Schematic of Becquerel's experiment where uranium salts exposed photographic plates wrapped in black paper, demonstrating spontaneous radiation emission.
+                        </div>
+                    </div>
+                    
+                    <p>Becquerel's discovery earned him the Nobel Prize in Physics in 1903, which he shared with Pierre and Marie Curie for their combined contributions to understanding radioactivity. This work laid the foundation for the development of nuclear physics and our modern understanding of atomic structure.</p>
+                    
+                    <div class="page-number">Page 2 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 3: Marie and Pierre Curie's Contributions</h4>
+                    <p>Building on Becquerel's discovery, <span class="highlight">Marie and Pierre Curie</span> conducted pioneering research that expanded our understanding of radioactive elements. Marie Curie, inspired by Becquerel's work, decided to make radioactivity the subject of her doctoral thesis, a decision that would lead to groundbreaking discoveries.</p>
+                    
+                    <p>The Curies developed methods to isolate radioactive components from uranium ore. Through meticulous chemical processing of tons of pitchblende (a uranium ore), they identified two new elements: polonium (named after Marie's homeland, Poland) and radium (named for its intense radioactivity). Their work demonstrated that radioactivity was an atomic property, not a molecular one.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Key Contribution:</strong> The Curies established that radioactivity was a property of atoms and discovered new radioactive elements, expanding the periodic table.
+                    </div>
+                    
+                    <p>Marie Curie's quantitative measurements showed that the radiation emitted by uranium compounds was proportional to the amount of uranium present, regardless of the chemical form of the compound. This crucial insight confirmed that radioactivity originated from within the atom itself, specifically from the nucleus.</p>
+                    
+                    <div class="figure">
+                        <img src="fig3.png">
+                        <div class="figure-caption">
+                            <strong>Figure 1.3:</strong> Marie and Pierre Curie in their laboratory, where they conducted pioneering research on radioactivity and discovered new elements.
+                        </div>
+                    </div>
+                    
+                    <p>The Curies' work had profound implications. Marie Curie became the first woman to win a Nobel Prize and the only person to win Nobel Prizes in two different scientific fields (Physics in 1903 and Chemistry in 1911). Their research not only advanced scientific knowledge but also laid the groundwork for medical applications of radioactivity, including cancer treatment.</p>
+                    
+                    <div class="page-number">Page 3 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 4: Types of Radiation (Alpha, Beta, Gamma)</h4>
+                    <p>Early experiments with radioactive materials revealed that the emitted radiation was not uniform. Through careful experimentation, physicists identified three distinct types of radiation, which were named using the first three letters of the Greek alphabet: alpha (α), beta (β), and gamma (γ).</p>
+                    
+                    <p><span class="highlight">Alpha radiation</span> consists of positively charged particles that are relatively heavy and have low penetration power. These particles were later identified as helium nuclei (two protons and two neutrons). Alpha particles can be stopped by a sheet of paper or a few centimeters of air.</p>
+                    
+                    <p><span class="highlight">Beta radiation</span> consists of negatively charged particles that are much lighter and more penetrating than alpha particles. These particles were identified as electrons (beta-minus) or positrons (beta-plus). Beta particles can penetrate several millimeters of aluminum.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Key Distinction:</strong> The three types of radiation differ in their composition, charge, mass, and penetration power, which determines their interactions with matter and potential applications.
+                    </div>
+                    
+                    <p><span class="highlight">Gamma radiation</span> is electromagnetic radiation of very high frequency and energy, similar to X-rays but more energetic. Gamma rays have no charge or mass and are highly penetrating, requiring several centimeters of lead or meters of concrete to attenuate significantly.</p>
+                    
+                    <div class="figure">
+                        <img src="fig4.jpg" alt="Types of Radiation and Penetration">
+                        <div class="figure-caption">
+                            <strong>Figure 1.4:</strong> Penetration power of alpha, beta, and gamma radiation through different materials. Alpha particles are stopped by paper, beta particles by aluminum, while gamma rays require dense materials like lead.
+                        </div>
+                    </div>
+                    
+                    <p>The discovery of these different types of radiation was crucial for understanding nuclear processes. Each type of radiation is associated with specific nuclear transformations: alpha decay involves the emission of helium nuclei, beta decay involves the transformation of neutrons into protons (or vice versa), and gamma emission accompanies transitions between nuclear energy states.</p>
+                    
+                    <div class="page-number">Page 4 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 5: Radiation Detection Introduction</h4>
+                    <p>The study of radioactivity required the development of instruments capable of detecting and measuring the invisible radiation emitted by radioactive materials. Early detection methods relied on the ability of radiation to ionize matter or expose photographic plates.</p>
+                    
+                    <p>One of the earliest detection devices was the <span class="highlight">electroscope</span>, which used the electrostatic repulsion between charged leaves to detect ionization caused by radiation. When radiation passed through the air near the electroscope, it ionized the air molecules, reducing the charge on the leaves and causing them to fall together.</p>
+                    
+                    <p>A more sophisticated instrument was the <span class="highlight">cloud chamber</span>, developed by Charles Wilson in 1911. This device allowed visualization of radiation tracks by creating supersaturated vapor in which ionization trails formed visible droplet tracks. Cloud chambers were instrumental in identifying different types of radiation and studying their properties.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Detection Principle:</strong> Most radiation detectors work by measuring the ionization or excitation produced when radiation interacts with matter, converting these interactions into measurable signals.
+                    </div>
+                    
+                    <p>The <span class="highlight">Geiger-Müller counter</span>, invented in 1928, became one of the most widely used radiation detectors. It consists of a gas-filled tube with a central electrode. When radiation enters the tube, it ionizes the gas, creating an electrical pulse that can be counted. This instrument allowed for quantitative measurements of radiation intensity.</p>
+                    
+                    <div class="figure">
+                        <img src="fig5.png" alt="Early Radiation Detection Devices">
+                        <div class="figure-caption">
+                            <strong>Figure 1.5:</strong> Early radiation detection devices: (a) electroscope, (b) cloud chamber, and (c) Geiger-Müller counter. These instruments enabled the study of radioactive materials and their properties.
+                        </div>
+                    </div>
+                    
+                    <p>The development of radiation detection technology was crucial for advancing nuclear physics research. These instruments allowed scientists to quantify radiation, identify different types of radiation, study radioactive decay processes, and eventually discover new elements and isotopes. Modern detectors have evolved significantly but still rely on the same fundamental principles of radiation-matter interactions.</p>
+                    
+                    <div class="assignment">
+                        <h4>Assignment</h4>
+                        <p>Read Chapter 1.1-1.2 of the textbook to deepen your understanding of early nuclear discoveries and the properties of radiation.</p>
+                    </div>
+                    
+                    <div class="page-number">Page 5 of 15</div>
+                </div>
+            </div>
+            
+            <div id="lecture2" class="lecture">
+                <div class="lecture-header">
+                    <h3>Lecture 2: Nuclear Discovery and Structure</h3>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 6: Rutherford's Gold Foil Experiment</h4>
+                    <p>In 1911, <span class="highlight">Ernest Rutherford</span> conducted an experiment that would revolutionize our understanding of atomic structure. Working with Hans Geiger and Ernest Marsden, Rutherford directed a beam of alpha particles at a thin sheet of gold foil to study how they were scattered.</p>
+                    
+                    <p>The prevailing model of the atom at the time was J.J. Thomson's "plum pudding" model, which depicted the atom as a positively charged sphere with negatively charged electrons embedded within it. According to this model, alpha particles passing through the foil should experience only slight deflections.</p>
+                    
+                    <p>To their surprise, while most alpha particles passed through the foil with little or no deflection, a small fraction were scattered at large angles, with some even bouncing back toward the source. Rutherford later described this result as "almost as incredible as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you."</p>
+                    
+                    <div class="key-concept">
+                        <strong>Key Observation:</strong> The unexpected large-angle scattering of alpha particles indicated that the atom's positive charge and most of its mass were concentrated in a tiny, dense core.
+                    </div>
+                    
+                    <p>Rutherford's experiment used a radioactive source (radium) to emit alpha particles, which were collimated into a narrow beam. The gold foil was only about 1000 atoms thick, allowing most alpha particles to pass through. A zinc sulfide screen surrounding the foil produced flashes of light when struck by alpha particles, allowing Geiger and Marsden to count the scattered particles at different angles.</p>
+                    
+                    <div class="figure">
+                        <img src="fig6.png" alt="Rutherford's Gold Foil Experiment Setup">
+                        <div class="figure-caption">
+                            <strong>Figure 1.6:</strong> Schematic of Rutherford's gold foil experiment setup. Alpha particles from a radioactive source are directed at a thin gold foil, and their scattering patterns are observed on a surrounding screen.
+                        </div>
+                    </div>
+                    
+                    <p>The results of this experiment were inconsistent with the plum pudding model and led Rutherford to propose a new model of the atom with a small, dense nucleus at its center. This experiment marked the birth of nuclear physics and our understanding of the nuclear structure of the atom.</p>
+                    
+                    <div class="page-number">Page 6 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 7: Discovery of the Nucleus</h4>
+                    <p>Based on the results of the gold foil experiment, Rutherford proposed a revolutionary new model of the atom in 1911. He suggested that the atom consists of a tiny, dense, positively charged core surrounded by orbiting electrons. This core, which he called the <span class="highlight">nucleus</span>, contains most of the atom's mass and all of its positive charge.</p>
+                    
+                    <p>Rutherford's calculations showed that to produce the observed large-angle scattering, the nucleus must be extremely small compared to the overall size of the atom. He estimated that the nucleus has a diameter of about 10<sup>-15</sup> meters, while the atom itself has a diameter of about 10<sup>-10</sup> meters. This means that if an atom were the size of a football stadium, its nucleus would be roughly the size of a marble.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Nuclear Model:</strong> The atom consists of a small, dense, positively charged nucleus surrounded by orbiting electrons, with most of the atom being empty space.
+                    </div>
+                    
+                    <p>The discovery of the nucleus resolved several inconsistencies in the understanding of atomic structure. It explained why most alpha particles passed through the foil with little deflection (they passed through the empty space of the atom) and why a few were scattered at large angles (they came close to or collided with the tiny, dense nucleus).</p>
+                    
+                    <p>Rutherford's model also provided a framework for understanding atomic spectra. The electrons orbiting the nucleus could occupy specific energy levels, and transitions between these levels would produce the characteristic spectral lines observed in atomic emission and absorption spectra.</p>
+                    
+                    <div class="figure">
+                        <img src="fig7.png" alt="Rutherford's Nuclear Model of the Atom">
+                        <div class="figure-caption">
+                            <strong>Figure 1.7:</strong> Rutherford's nuclear model of the atom, showing a small, dense nucleus surrounded by orbiting electrons. Most of the atom is empty space.
+                        </div>
+                    </div>
+                    
+                    <p>The discovery of the nucleus marked a paradigm shift in physics, moving from the concept of a "plum pudding" atom to a nuclear atom. This new model laid the foundation for our modern understanding of atomic structure and nuclear physics, although it would later be refined by Niels Bohr's quantum mechanical model of the atom.</p>
+                    
+                    <div class="page-number">Page 7 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 8: Plum Pudding vs Nuclear Model</h4>
+                    <p>The transition from the <span class="highlight">plum pudding model</span> to the <span class="highlight">nuclear model</span> of the atom represents one of the most significant paradigm shifts in the history of physics. Understanding the differences between these models is crucial for appreciating the development of atomic theory.</p>
+                    
+                    <p>The plum pudding model, proposed by J.J. Thomson in 1904, depicted the atom as a positively charged sphere with negatively charged electrons embedded within it, similar to plums in a pudding. In this model, the positive charge was spread throughout the atom, and the electrons were distributed within this positive "soup." This model explained the neutrality of atoms and some aspects of atomic spectra but could not account for the results of Rutherford's gold foil experiment.</p>
+                    
+                    <p>In contrast, Rutherford's nuclear model proposed that the atom consists of a small, dense, positively charged nucleus surrounded by orbiting electrons. In this model, most of the atom is empty space, with the nucleus containing virtually all of the atom's mass and positive charge. This model successfully explained the scattering of alpha particles observed in the gold foil experiment.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Model Comparison:</strong> The nuclear model differs fundamentally from the plum pudding model in its distribution of mass and charge, with the nuclear model concentrating these properties in a tiny central nucleus.
+                    </div>
+                    
+                    <p>The table below summarizes the key differences between these two models:</p>
+                    
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <tr style="background-color: var(--light-bg);">
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Feature</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Plum Pudding Model</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Nuclear Model</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Positive Charge</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Distributed throughout the atom</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Concentrated in the nucleus</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Electrons</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Embedded in positive sphere</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Orbiting the nucleus</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Mass Distribution</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Relatively uniform</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Concentrated in the nucleus</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Empty Space</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Minimal</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Most of the atom is empty space</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="figure">
+                        <img src="fig8.jpg" alt="Comparison of Atomic Models">
+                        <div class="figure-caption">
+                            <strong>Figure 1.8:</strong> Comparison of the plum pudding model (left) and the nuclear model (right). The nuclear model shows a small, dense nucleus surrounded by orbiting electrons, with most of the atom being empty space.
+                        </div>
+                    </div>
+                    
+                    <p>The nuclear model, while revolutionary, was not without its problems. According to classical electromagnetic theory, orbiting electrons should continuously emit radiation and spiral into the nucleus, making atoms unstable. This issue would later be resolved by Niels Bohr's quantum mechanical model of the atom, which incorporated quantized energy levels for the electrons.</p>
+                    
+                    <div class="page-number">Page 8 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 9: Size Scales: Atom vs Nucleus</h4>
+                    <p>One of the most striking revelations from Rutherford's nuclear model was the enormous difference in size between the atom and its nucleus. This size disparity has profound implications for our understanding of matter and the behavior of atomic and nuclear systems.</p>
+                    
+                    <p>The diameter of a typical atom is approximately 10<sup>-10</sup> meters (1 angstrom), while the diameter of a nucleus is approximately 10<sup>-15</sup> meters (1 femtometer). This means that the nucleus is about 100,000 times smaller than the atom. To put this in perspective, if an atom were expanded to the size of a football stadium (about 100 meters in diameter), its nucleus would be only about 1 millimeter in diameter—roughly the size of a small grain of sand.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Size Ratio:</strong> The ratio of atomic to nuclear size is approximately 100,000:1, meaning that most of the atom is empty space.
+                    </div>
+                    
+                    <p>This enormous size difference has several important consequences:</p>
+                    <ul>
+                        <li><strong>Density:</strong> The nucleus is incredibly dense. Nuclear matter has a density of about 2.3 × 10<sup>17</sup> kg/m<sup>3</sup>, which is more than 100 trillion times denser than water. A teaspoon of nuclear matter would weigh about 5 billion tons!</li>
+                        <li><strong>Empty Space:</strong> Most of the atom is empty space, which explains why most alpha particles in Rutherford's experiment passed through the gold foil with little deflection.</li>
+                        <li><strong>Forces:</strong> The forces operating at the atomic scale (electromagnetic) and nuclear scale (strong nuclear force) are very different, leading to distinct behaviors in these domains.</li>
+                    </ul>
+                    
+                    <div class="figure">
+                        <img src="fig9.png" alt="Size Comparison of Atom and Nucleus">
+                        <div class="figure-caption">
+                            <strong>Figure 1.9:</strong> Size comparison of an atom and its nucleus. If an atom were the size of a football stadium, its nucleus would be about the size of a marble on the 50-yard line.
+                        </div>
+                    </div>
+                    
+                    <p>The size of the nucleus is not fixed but depends on the number of nucleons (protons and neutrons) it contains. The nuclear radius R can be approximated by the formula:</p>
+                    <p style="text-align: center; font-family: monospace;">R = r<sub>0</sub> A<sup>1/3</sup></p>
+                    <p>where r<sub>0</sub> ≈ 1.2 fm and A is the mass number (total number of nucleons). This relationship indicates that the nuclear radius increases with the cube root of the mass number, meaning that nuclear volume is proportional to the number of nucleons. This suggests that nucleons are packed together at roughly constant density, similar to molecules in a liquid drop.</p>
+                    
+                    <p>The dramatic difference in size between the atom and its nucleus highlights the hierarchical structure of matter and the importance of understanding phenomena at different scales. It also underscores why nuclear physics and atomic physics, while related, are distinct fields with their own principles and methods.</p>
+                    
+                    <div class="page-number">Page 9 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 10: Discovery of the Neutron (Chadwick, 1932)</h4>
+                    <p>While Rutherford's nuclear model was a significant advancement, it left an important question unanswered: What is the composition of the nucleus? By the 1920s, it was known that the nucleus contained protons (positively charged particles), but the total mass of the protons in a nucleus was less than the actual mass of the nucleus. This discrepancy suggested the presence of additional neutral particles in the nucleus.</p>
+                    
+                    <p>In 1932, <span class="highlight">James Chadwick</span> discovered the neutron, a neutral particle with a mass similar to that of the proton. Chadwick's discovery was the result of experiments conducted under the direction of Rutherford at the Cavendish Laboratory in Cambridge.</p>
+                    
+                    <p>Chadwick was studying the radiation emitted when beryllium was bombarded with alpha particles. Earlier experiments by Frédéric and Irène Joliot-Curie had shown that this radiation could eject protons from paraffin wax. The Joliot-Curies interpreted this radiation as high-energy gamma rays, but Chadwick realized that the energy required to eject protons was too high to be explained by gamma rays alone.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Neutron Discovery:</strong> Chadwick demonstrated that the radiation from beryllium bombarded with alpha particles consisted of neutral particles with mass similar to protons, which he called neutrons.
+                    </div>
+                    
+                    <p>Chadwick proposed that the radiation consisted of neutral particles with mass approximately equal to that of the proton. He performed experiments measuring the recoil of various nuclei when struck by this radiation and used conservation of energy and momentum to calculate the mass of the neutral particles. His results confirmed the existence of the neutron, with a mass slightly greater than that of the proton.</p>
+                    
+                    <div class="figure">
+                        <img src="fig10.jpeg" alt="Chadwick's Neutron Discovery Experiment">
+                        <div class="figure-caption">
+                            <strong>Figure 1.10:</strong> Schematic of Chadwick's experiment. Alpha particles from a polonium source bombard a beryllium target, producing neutrons that then strike a paraffin block, ejecting protons that are detected.
+                        </div>
+                    </div>
+                    
+                    <p>The discovery of the neutron completed our basic understanding of nuclear composition. The nucleus is now known to consist of protons (positively charged) and neutrons (neutral), collectively called nucleons. The number of protons determines the element's identity (atomic number Z), while the total number of nucleons determines the isotope (mass number A).</p>
+                    
+                    <p>Chadwick's discovery had profound implications for nuclear physics. It explained the discrepancy between nuclear mass and proton mass, provided a mechanism for nuclear stability (neutrons help overcome the electrostatic repulsion between protons), and paved the way for the discovery of nuclear fission and the development of nuclear energy. Chadwick was awarded the Nobel Prize in Physics in 1935 for his discovery of the neutron.</p>
+                    
+                    <div class="assignment">
+                        <h4>Assignment</h4>
+                        <p>Complete problems on atomic vs. nuclear scales to reinforce your understanding of these size differences and the composition of the nucleus.</p>
+                    </div>
+                    
+                    <div class="page-number">Page 10 of 15</div>
+                </div>
+            </div>
+            
+            <div id="lecture3" class="lecture">
+                <div class="lecture-header">
+                    <h3>Lecture 3: Nuclear Terminology and Notation</h3>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 11: Nucleons: Protons and Neutrons</h4>
+                    <p>With the discovery of the neutron, our understanding of nuclear composition was complete. The nucleus is composed of two types of particles: <span class="highlight">protons</span> and <span class="highlight">neutrons</span>, collectively known as <span class="highlight">nucleons</span>. These particles are the building blocks of atomic nuclei and determine the properties of elements and isotopes.</p>
+                    
+                    <p>Protons are positively charged particles with a charge of +1e (where e is the elementary charge, approximately 1.602 × 10<sup>-19</sup> coulombs). They have a mass of approximately 1.673 × 10<sup>-27</sup> kg, which is about 1836 times the mass of an electron. The number of protons in a nucleus determines the element's identity and is called the atomic number, denoted by Z.</p>
+                    
+                    <p>Neutrons are electrically neutral particles with a mass slightly greater than that of protons (approximately 1.675 × 10<sup>-27</sup> kg). Despite being neutral, neutrons play a crucial role in nuclear stability. They help overcome the electrostatic repulsion between protons through the strong nuclear force, which binds nucleons together.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Nucleon Properties:</strong> Protons and neutrons have similar masses but different charges. Together, they form the nucleus, with protons determining the element and neutrons contributing to nuclear stability.
+                    </div>
+                    
+                    <p>Both protons and neutrons are composite particles made up of smaller particles called quarks. Protons consist of two "up" quarks and one "down" quark (uud), while neutrons consist of one "up" quark and two "down" quarks (udd). The strong nuclear force, mediated by particles called gluons, holds these quarks together within nucleons and also binds nucleons together within the nucleus.</p>
+                    
+                    <p>The properties of nucleons can be summarized as follows:</p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <tr style="background-color: var(--light-bg);">
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Property</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Proton</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Neutron</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Charge</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">+1e</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">0</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Mass</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">1.673 × 10<sup>-27</sup> kg</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">1.675 × 10<sup>-27</sup> kg</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Quark Composition</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">uud</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">udd</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Role in Nucleus</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Determines element identity</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Contributes to stability</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="figure">
+                        <img src="fig11.jpg" alt="Structure of Protons and Neutrons">
+                        <div class="figure-caption">
+                            <strong>Figure 1.11:</strong> Quark structure of protons (uud) and neutrons (udd). Both particles consist of three quarks held together by the strong nuclear force, mediated by gluons.
+                        </div>
+                    </div>
+                    
+                    <p>The study of nucleons and their interactions is fundamental to nuclear physics. Understanding their properties and behavior allows us to explain nuclear stability, radioactive decay, nuclear reactions, and the properties of different elements and isotopes. In the following pages, we will explore how nucleons are characterized and organized in nuclear terminology and notation.</p>
+                    
+                    <div class="page-number">Page 11 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 12: Atomic Number (Z), Mass Number (A), Neutron Number (N)</h4>
+                    <p>To describe the composition of atomic nuclei, physicists use three fundamental numbers: the <span class="highlight">atomic number (Z)</span>, the <span class="highlight">mass number (A)</span>, and the <span class="highlight">neutron number (N)</span>. These numbers provide a complete description of the nucleus and determine many of its properties.</p>
+                    
+                    <p>The <strong>atomic number (Z)</strong> represents the number of protons in the nucleus. It is the defining characteristic of an element: all atoms of the same element have the same number of protons. For example, all carbon atoms have Z = 6, meaning they contain 6 protons. The atomic number determines the element's position in the periodic table and its chemical properties, which are primarily governed by the electron configuration around the nucleus.</p>
+                    
+                    <p>The <strong>neutron number (N)</strong> represents the number of neutrons in the nucleus. Unlike protons, the number of neutrons can vary among atoms of the same element, giving rise to different isotopes. For example, carbon-12 has 6 neutrons (N = 6), while carbon-14 has 8 neutrons (N = 8). Neutrons contribute to the mass of the nucleus and play a crucial role in nuclear stability.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Nuclear Composition:</strong> The atomic number (Z) determines the element, the neutron number (N) determines the isotope, and the mass number (A) is the total number of nucleons (A = Z + N).
+                    </div>
+                    
+                    <p>The <strong>mass number (A)</strong> is the total number of nucleons (protons and neutrons) in the nucleus. It is calculated as the sum of the atomic number and the neutron number: A = Z + N. The mass number is approximately equal to the atomic mass of the atom expressed in atomic mass units (u). For example, carbon-12 has A = 12 (6 protons + 6 neutrons), while carbon-14 has A = 14 (6 protons + 8 neutrons).</p>
+                    
+                    <p>These three numbers are related by the simple equation:</p>
+                    <p style="text-align: center; font-family: monospace;">A = Z + N</p>
+                    <p>Given any two of these numbers, the third can be calculated. This relationship is fundamental to nuclear notation and the classification of nuclei.</p>
+                    
+                    <div class="figure">
+                        <img src="fig12.png" alt="Atomic Number, Mass Number, and Neutron Number">
+                        <div class="figure-caption">
+                            <strong>Figure 1.12:</strong> Relationship between atomic number (Z), neutron number (N), and mass number (A). The mass number is the sum of the atomic number and the neutron number (A = Z + N).
+                        </div>
+                    </div>
+                    
+                    <p>The values of Z, N, and A determine many properties of nuclei:</p>
+                    <ul>
+                        <li><strong>Nuclear Stability:</strong> The ratio of neutrons to protons (N/Z) affects nuclear stability. For light elements, stable nuclei have N/Z ≈ 1, while for heavier elements, stable nuclei have N/Z ≈ 1.5.</li>
+                        <li><strong>Radioactive Decay:</strong> Unstable nuclei with too many or too few neutrons relative to protons undergo radioactive decay to achieve a more stable configuration.</li>
+                        <li><strong>Nuclear Reactions:</strong> In nuclear reactions, the conservation of nucleon number (A) and charge (Z) must be maintained.</li>
+                    </ul>
+                    
+                    <p>Understanding these fundamental numbers is essential for navigating the landscape of nuclear physics. They form the basis for nuclear notation, which we will explore in the next section, and for organizing the chart of nuclides, which maps all known nuclei based on their proton and neutron numbers.</p>
+                    
+                    <div class="page-number">Page 12 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 13: Notation: Standard Notation A Z X</h4>
+                    <p>To represent atomic nuclei concisely and unambiguously, physicists use a standard notation that incorporates the atomic number, mass number, and chemical symbol of the element. This notation provides a complete description of the nucleus in a compact form.</p>
+                    
+                    <p>The standard nuclear notation is written as <span class="highlight"><sup>A</sup>Z<sub>X</sub></span>, where:</p>
+                    <ul>
+                        <li><strong>X</strong> is the chemical symbol of the element (e.g., H for hydrogen, He for helium, C for carbon)</li>
+                        <li><strong>Z</strong> is the atomic number (number of protons)</li>
+                        <li><strong>A</strong> is the mass number (total number of nucleons)</li>
+                    </ul>
+                    
+                    <p>For example, the notation <sup>12</sup>6C represents a carbon nucleus with 6 protons (Z = 6) and a mass number of 12 (A = 12). Since A = Z + N, this nucleus must have 6 neutrons (N = 12 - 6 = 6).</p>
+                    
+                    <div class="key-concept">
+                        <strong>Standard Notation:</strong> The notation <sup>A</sup>Z<sub>X</sub> provides a complete description of a nucleus, with the chemical symbol (X), atomic number (Z), and mass number (A).
+                    </div>
+                    
+                    <p>The atomic number Z is often omitted in contexts where the chemical symbol uniquely determines the element (since each element has a unique atomic number). In such cases, the notation is simplified to <sup>A</sup>X. For example, <sup>12</sup>C is understood to represent carbon-12, which has Z = 6. However, the full notation <sup>A</sup>Z<sub>X</sub> is preferred in formal nuclear physics contexts to avoid ambiguity.</p>
+                    
+                    <p>Here are some examples of standard nuclear notation:</p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <tr style="background-color: var(--light-bg);">
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Notation</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Element</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Protons (Z)</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Neutrons (N)</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">Mass Number (A)</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);"><sup>1</sup>1H</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Hydrogen</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">1</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">0</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">1</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);"><sup>4</sup>2He</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Helium</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">2</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">2</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">4</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);"><sup>238</sup>92U</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Uranium</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">92</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">146</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">238</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="figure">
+                        <img src="fig13.png" alt="Standard Nuclear Notation">
+                        <div class="figure-caption">
+                            <strong>Figure 1.13:</strong> Standard nuclear notation <sup>A</sup>Z<sub>X</sub> showing the relationship between the chemical symbol (X), atomic number (Z), and mass number (A). The neutron number (N) can be calculated as N = A - Z.
+                        </div>
+                    </div>
+                    
+                    <p>The standard nuclear notation is essential for communicating nuclear information clearly and concisely. It is used in nuclear equations, decay schemes, reaction diagrams, and throughout the nuclear physics literature. Mastering this notation is a fundamental skill for anyone studying nuclear physics.</p>
+                    
+                    <p>In nuclear equations, the notation is used to represent the reactants and products. For example, the alpha decay of uranium-238 can be written as:</p>
+                    <p style="text-align: center; font-family: monospace;"><sup>238</sup>92U → <sup>234</sup>90Th + <sup>4</sup>2He</p>
+                    <p>This equation shows that uranium-238 decays into thorium-234 and a helium-4 nucleus (alpha particle), with conservation of both mass number (238 = 234 + 4) and atomic number (92 = 90 + 2).</p>
+                    
+                    <div class="page-number">Page 13 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 14: Isotopes, Isobars, Isotones, Isomers</h4>
+                    <p>Nuclear physics uses several terms to describe relationships between different nuclei based on their proton and neutron numbers. Understanding these terms—<span class="highlight">isotopes</span>, <span class="highlight">isobars</span>, <span class="highlight">isotones</span>, and <span class="highlight">isomers</span>—is essential for navigating the landscape of nuclear species and their properties.</p>
+                    
+                    <p><strong>Isotopes</strong> are nuclei of the same element (same atomic number Z) but with different numbers of neutrons (different neutron number N and mass number A). Since they have the same number of protons, isotopes have similar chemical properties but may have different nuclear properties. For example, carbon has three naturally occurring isotopes: carbon-12 (<sup>12</sup>6C), carbon-13 (<sup>13</sup>6C), and carbon-14 (<sup>14</sup>6C). Carbon-12 and carbon-13 are stable, while carbon-14 is radioactive and used in radiocarbon dating.</p>
+                    
+                    <p><strong>Isobars</strong> are nuclei with the same mass number A but different atomic numbers Z (and thus different elements). Isobars have the same total number of nucleons but different compositions of protons and neutrons. For example, <sup>40</sup>18Ar (argon-40), <sup>40</sup>19K (potassium-40), and <sup>40</sup>20Ca (calcium-40) are isobars with A = 40. Isobars often have very different nuclear properties and stabilities.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Nuclear Relationships:</strong> Isotopes have the same Z, isobars have the same A, isotones have the same N, and isomers have the same Z and N but different energy states.
+                    </div>
+                    
+                    <p><strong>Isotones</strong> are nuclei with the same number of neutrons N but different atomic numbers Z (and thus different elements). Isotones have the same neutron number but different proton numbers. For example, carbon-13 (<sup>13</sup>6C, N = 7), nitrogen-14 (<sup>14</sup>7N, N = 7), and oxygen-15 (<sup>15</sup>8O, N = 7) are isotones with N = 7. Isotones may exhibit similarities in their nuclear structure due to the same number of neutrons.</p>
+                    
+                    <p><strong>Isomers</strong> are nuclei with the same number of protons and neutrons (same Z and N) but in different energy states. These excited states of nuclei are metastable, meaning they have relatively long lifetimes compared to typical nuclear excited states. Isomers are denoted by adding an "m" to the mass number (e.g., <sup>99m</sup>43Tc for technetium-99m). Nuclear isomers can decay to the ground state by emitting gamma rays or by other decay processes.</p>
+                    
+                    <div class="figure">
+                        <img src="fig14.png" alt="Isotopes, Isobars, Isotones, and Isomers">
+                        <div class="figure-caption">
+                            <strong>Figure 1.14:</strong> Relationships between isotopes (same Z), isobars (same A), isotones (same N), and isomers (same Z and N, different energy states). The diagram shows how these nuclear species relate to each other in the chart of nuclides.
+                        </div>
+                    </div>
+                    
+                    <p>These terms are important for understanding nuclear stability, decay processes, and reactions. For example:</p>
+                    <ul>
+                        <li>Isotopes of an element may have very different stabilities and decay properties, which is crucial for applications like nuclear medicine and dating techniques.</li>
+                        <li>Isobars often undergo beta decay to transform from one element to another, moving toward the valley of stability in the chart of nuclides.</li>
+                        <li>Isotones may exhibit similar nuclear structure properties due to the same neutron configuration.</li>
+                        <li>Isomers can have unique decay properties and applications in medicine and industry due to their metastable excited states.</li>
+                    </ul>
+                    
+                    <p>The relationships between these nuclear species are visualized in the chart of nuclides, which plots nuclei based on their proton and neutron numbers. This chart reveals patterns of nuclear stability and decay, providing insights into the underlying nuclear structure and forces.</p>
+                    
+                    <div class="page-number">Page 14 of 15</div>
+                </div>
+                
+                <div class="page">
+                    <h4>Page 15: Chart of Nuclides Introduction</h4>
+                    <p>The <span class="highlight">Chart of Nuclides</span> is a fundamental tool in nuclear physics that organizes all known nuclei based on their proton and neutron numbers. This chart provides a comprehensive overview of nuclear properties, including stability, decay modes, half-lives, and other characteristics.</p>
+                    
+                    <p>The chart is typically presented as a two-dimensional plot with the number of protons (Z) on the vertical axis and the number of neutrons (N) on the horizontal axis. Each square on the chart represents a unique nuclide, with information about its properties displayed within the square. The chart reveals patterns of nuclear stability and decay that are essential for understanding nuclear structure and processes.</p>
+                    
+                    <p>One of the most striking features of the chart is the <span class="highlight">valley of stability</span>, a band of stable nuclei that runs through the chart. For light elements (low Z), stable nuclei have approximately equal numbers of protons and neutrons (N/Z ≈ 1). As the atomic number increases, the ratio of neutrons to protons in stable nuclei increases, reaching about N/Z ≈ 1.5 for the heaviest stable elements. This trend reflects the increasing importance of the neutron in overcoming the electrostatic repulsion between protons in larger nuclei.</p>
+                    
+                    <div class="key-concept">
+                        <strong>Valley of Stability:</strong> Stable nuclei form a band in the chart of nuclides called the valley of stability. Nuclei to the left of this band (neutron-deficient) tend to undergo positron emission or electron capture, while nuclei to the right (neutron-rich) tend to undergo beta-minus decay.
+                    </div>
+                    
+                    <p>Nuclei that lie outside the valley of stability are radioactive and undergo decay processes to move toward stability. Neutron-rich nuclei (to the right of the valley) typically undergo beta-minus decay, converting a neutron to a proton. Neutron-deficient nuclei (to the left of the valley) typically undergo positron emission or electron capture, converting a proton to a neutron. Very heavy nuclei may undergo alpha decay or spontaneous fission to reduce their size.</p>
+                    
+                    <p>The chart also reveals <span class="highlight">magic numbers</span>—specific numbers of protons or neutrons that result in particularly stable nuclei. These magic numbers (2, 8, 20, 28, 50, 82, and 126) correspond to filled nuclear shells, analogous to the electron shells in atomic physics. Nuclei with magic numbers of protons or neutrons are more stable and have higher binding energies per nucleon than neighboring nuclei.</p>
+                    
+                    <div class="figure">
+                        <img src="fig15.png" alt="Chart of Nuclides">
+                        <div class="figure-caption">
+                            <strong>Figure 1.15:</strong> Segment of the Chart of Nuclides showing the relationship between protons (Z) and neutrons (N). The stable nuclei form a "valley of stability," with radioactive nuclei on either side undergoing different types of decay to move toward stability.
+                        </div>
+                    </div>
+                    
+                    <p>Modern interactive charts of nuclides provide detailed information about each nuclide, including:</p>
+                    <ul>
+                        <li>Decay modes and half-lives</li>
+                        <li>Decay energies and branching ratios</li>
+                        <li>Isomeric states and their properties</li>
+                        <li>Cross-sections for nuclear reactions</li>
+                        <li>Abundance in nature (for stable isotopes)</li>
+                    </ul>
+                    
+                    <p>The chart of nuclides is an invaluable tool for nuclear physicists, engineers, and students. It provides insights into nuclear structure, helps predict decay properties, guides experimental design, and serves as a reference for nuclear data. As we progress through this course, we will frequently refer to the chart of nuclides to illustrate concepts and patterns in nuclear physics.</p>
+                    
+                    <div class="assignment">
+                        <h4>Assignment</h4>
+                        <p>Complete the notation worksheet to practice identifying and writing nuclear notation for various elements and isotopes. Also, explore an interactive chart of nuclides to familiarize yourself with the patterns of nuclear stability.</p>
+                    </div>
+                    
+                    <div class="page-number">Page 15 of 15</div>
+                </div>
+            </div>
+            
+            <footer>
+                <p>Nuclear Physics Course | Dr. Irfan Toqeer | Week 1</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
